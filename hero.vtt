@@ -1,0 +1,283 @@
+WEBVTT
+
+00:00.900 --> 00:07.380
+Now these days it's hard to come by a good app that doesn't feature any animations.
+
+00:07.380 --> 00:14.550
+It seems like every single app is taking advantage of the improved resources of mobile phones and they're
+
+00:14.550 --> 00:22.980
+all giving their user interfaces some sort of animation that makes it pop or jump or rotate and it looks
+
+00:23.040 --> 00:26.040
+so much flashier and so much more engaging.
+
+00:26.070 --> 00:33.660
+When we add animations to our apps so in the next few lessons I want to focus on how to create animations
+
+00:33.780 --> 00:41.310
+in flutter so that you can also create delightful experiences for the user by incorporating these animations
+
+00:41.370 --> 00:43.640
+into your flutter apps.
+
+00:43.680 --> 00:50.950
+Now when we're building animations using native API such as Android and IRS because a lot of the SDK
+
+00:51.000 --> 00:57.480
+were built in an age where animations were almost like an afterthought the initial Android and iPhones
+
+00:57.600 --> 01:02.460
+didn't have the resources to be able to animate things with ease.
+
+01:02.850 --> 01:08.970
+So these animation libraries actually came much later and if you look through a tutorial for how to
+
+01:08.970 --> 01:14.490
+build an animation in Iaw or Android especially something a little bit more complex a little bit more
+
+01:14.490 --> 01:20.370
+involved with curves or different timings you can see that it actually usually involves quite a lot
+
+01:20.490 --> 01:27.570
+of code but because flutter was built much more recently it knows how important animations are to Modern
+
+01:27.570 --> 01:28.350
+apps.
+
+01:28.350 --> 01:34.230
+And so when implementing animations using the flutter SDK you'll find that it's actually incredibly
+
+01:34.230 --> 01:40.080
+simple to add animations to your flutter apps so there's no reason to hold you back.
+
+01:40.380 --> 01:45.690
+Now in this lesson we're going to talk about one of the easiest and most commonly use animations in
+
+01:45.690 --> 01:48.630
+flutter apps and these are hero animations.
+
+01:48.660 --> 01:51.240
+So what does a hero animation look like.
+
+01:51.240 --> 01:54.570
+Well it usually takes place on a screen transition.
+
+01:54.570 --> 02:02.310
+So when we go from page 1 of the screen to Page 2 of the screen if they have a shared element then that
+
+02:02.370 --> 02:06.960
+element will transition between page one and page two.
+
+02:07.110 --> 02:13.470
+So that element being an image or an icon or whatever it may be has to be present on both pages and
+
+02:13.470 --> 02:22.760
+it will have a continuous transition as the user navigates from page one on to page two of the app now
+
+02:22.790 --> 02:26.910
+because they have that requirement of having a shared element.
+
+02:27.020 --> 02:34.790
+If you come from Android you might know this animation as a shared element transition and it looks like
+
+02:34.790 --> 02:36.900
+this on a real flutter app.
+
+02:36.950 --> 02:43.670
+So we're transitioning from one screen to another screen and that shared element is being tweeted or
+
+02:43.670 --> 02:52.450
+being animated steadily across the two screens and in this lesson we're going to implement hero animations
+
+02:52.810 --> 02:55.120
+into our app.
+
+02:55.120 --> 03:00.670
+This way when the user goes from the welcome screen to the log in screen that little lightning icon
+
+03:01.000 --> 03:07.890
+will transition onto the second screen in a smooth transition like this.
+
+03:08.140 --> 03:14.080
+So this is what we're going to implement and to do that we're going to need to first read up a little
+
+03:14.080 --> 03:20.380
+bit on hero animations but as you would imagine we're going to be using a widget and that widget is
+
+03:20.380 --> 03:22.030
+called The Hero widget.
+
+03:22.450 --> 03:27.700
+And to implement a hero widget animation all you need are three ingredients.
+
+03:27.700 --> 03:35.490
+The first ingredient is two hero widgets one widget on the first screen and another on the second screen.
+
+03:36.130 --> 03:42.550
+And then those hero widgets need to share a tag property so they will both have a tag property and you
+
+03:42.550 --> 03:47.000
+need to set it to have the same value on both hero widgets.
+
+03:47.080 --> 03:53.840
+And finally we're going to be navigating between the first and the second screen using a navigator base
+
+03:53.840 --> 04:02.180
+screen transition such as push or pop and that's all you need to implement the hero animation dead simple.
+
+04:02.180 --> 04:05.120
+So let's go ahead and do that for our app.
+
+04:05.540 --> 04:12.020
+So in the welcome screen we know that we have this image which shows our logo which is that lightning
+
+04:12.020 --> 04:12.850
+image.
+
+04:12.890 --> 04:20.360
+Now here instead of having our container just be a bog standard non moving container we're going to
+
+04:20.360 --> 04:23.390
+wrap it inside a hero widget.
+
+04:23.390 --> 04:32.000
+So it's called hero and this widget has only one required property and that's the tag without the tag
+
+04:32.030 --> 04:38.350
+the hero widget won't be able to figure out which other hero widget for it to animate to.
+
+04:38.360 --> 04:44.870
+So let's go ahead and give it a tag and let's call this logo just so that we know what the hero widget
+
+04:45.110 --> 04:47.690
+contains which is our logo image.
+
+04:47.690 --> 04:56.240
+Now notice that in this first hero widget or container has a height of 60 pixels.
+
+04:56.240 --> 05:02.780
+Once we decide to click on the register button we're going to be using the navigator to transition to
+
+05:02.780 --> 05:04.790
+the registration screen.
+
+05:04.790 --> 05:11.270
+So if we head over to our registration screen dot dot and locate where we have that shared element which
+
+05:11.270 --> 05:13.550
+is our image of the same logo.
+
+05:13.970 --> 05:17.270
+Well in this case our container has a slightly different height.
+
+05:17.320 --> 05:21.260
+It's much larger it's 200 pixels instead of 60.
+
+05:21.710 --> 05:29.210
+So let's wrap this container inside a hero widget also and let's give it a tag and make sure that the
+
+05:29.210 --> 05:35.990
+tag matches precisely with the previous tag for our previous hero widget.
+
+05:35.990 --> 05:38.930
+So this is the starting hero widget.
+
+05:39.110 --> 05:42.580
+And this is the final ending hero widget.
+
+05:43.160 --> 05:48.710
+And because they have the same tag then flutter knows that this is the end appearance.
+
+05:48.770 --> 05:51.390
+And this is the beginning appearance.
+
+05:51.440 --> 05:56.840
+So notice the only change is the height or the size of our image.
+
+05:57.410 --> 06:01.660
+That's all we need to be able to implement a hero animation.
+
+06:02.000 --> 06:07.880
+And if we go ahead and run our app you'll see that we actually get a pretty sophisticated looking animation
+
+06:08.180 --> 06:11.570
+for pretty much very little work that we've done just now.
+
+06:12.020 --> 06:18.650
+So because my hero widget lives in the registration screen I'm going to go ahead and click on the register
+
+06:18.650 --> 06:23.870
+button and I want you to watch this little image our logo image here.
+
+06:23.870 --> 06:30.300
+Notice how it transitions from being a small image to a much larger image.
+
+06:30.410 --> 06:36.690
+And that image is always on screen even as this first screen is being covered up.
+
+06:36.770 --> 06:46.390
+So that image is almost hovering in midair when it animates and transitions to the next screen.
+
+06:46.400 --> 06:48.620
+So now here's a challenge for you.
+
+06:48.620 --> 06:55.140
+We've implemented the hero widget that goes from the welcome screen to the registration screen.
+
+06:55.160 --> 07:01.820
+Try and figure out if you can get the same effect to happen when we click on the log in screen for that
+
+07:01.910 --> 07:08.010
+image to also perform that hero animation when we go to the log in screen.
+
+07:08.090 --> 07:14.050
+So pause a video and try to complete this challenge.
+
+07:14.390 --> 07:19.580
+Now we have our starting point for our hero animation in our welcome screen.
+
+07:19.580 --> 07:27.050
+And as long as we create a hero widget with the same tag then we'll be able to transition it to any
+
+07:27.050 --> 07:27.970
+screen.
+
+07:28.190 --> 07:35.570
+So we could create a hero widget and wrap our container with the image on our log in screen inside that
+
+07:35.570 --> 07:41.830
+new hero widget and give it the same tag as the one that we had on the welcome screen.
+
+07:41.830 --> 07:49.970
+So notice how this tag is now present in three places log and screen registration and welcome screen.
+
+07:49.970 --> 07:54.330
+There's no limit to how many hero elements you can have with the same tag.
+
+07:54.500 --> 08:00.770
+But this means that when we go from welcome screen to log in screen flat I can find a hero widget with
+
+08:00.770 --> 08:04.250
+the same tag logo here and logo here.
+
+08:04.580 --> 08:10.550
+And that means when we run our app again we should now be able to implement the hero animation both
+
+08:10.550 --> 08:18.320
+when we click on log in as well as when we click on register and all we needed was pretty much just
+
+08:18.440 --> 08:20.120
+two lines of code.
+
+08:20.120 --> 08:28.340
+Super simple now in the next lesson we're going to look at some more custom animations and we're going
+
+08:28.340 --> 08:36.890
+to be using the animated controller to be able to define a more complex animation such as how long do
+
+08:36.890 --> 08:42.560
+we want the animation to go on for or how do we want the animation to unfold.
+
+08:42.560 --> 08:46.010
+So for all of that and more I'll see on the next lesson.
